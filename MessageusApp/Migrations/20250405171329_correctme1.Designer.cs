@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MessageusApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250329101339_now6")]
-    partial class now6
+    [Migration("20250405171329_correctme1")]
+    partial class correctme1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -1,12 +1,17 @@
 ﻿using MessageusApp.Data;
-using MessageusApp.Service;
-using MessageusApp.Services;  // Ensure you are using the correct namespace
+//using MessageusApp.Services;  // Ensure you are using the correct namespace
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
+//using Microsoft.Extensions.DependencyInjection;
+//using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+
+
+//Error Message
+//2 An operation was scaffolded that may result in the loss of data. Please review the migration for accuracy.
+//1 Column names in each table must be unique. Column name 'SentAT' in table 'Messages' is specified more than once.
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,9 +51,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("messagemeConnect")));
 
 // Register Hosted Service Correctly
-builder.Services.AddSingleton<IEmailService, EmailService>(); // Ensure EmailService is registered
-builder.Services.AddHostedService<MessageDeliveryService>(); // This should work now ✅
-
+//builder.Services.AddSingleton<IEmailService, EmailService>(); // Ensure EmailService is registered
+//builder.Services.AddHostedService<MessageDeliveryService>(); // 
+                                                             
+//Register the Authentication JWT
 var key = Encoding.ASCII.GetBytes(builder.Configuration["Jwt:Key"]);
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
